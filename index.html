@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha Trilha de Estudos - Trilha Interativa</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🗺️ Minha Trilha de Estudos</h1>
+    <p>Um registro honesto da jornada — clique nas casas do tabuleiro para explorar o meu conhecimento!</p>
+    
+    <!-- Legenda com as Cores Corretas -->
+    <div class="legend">
+      <div class="legend-item"><span class="badge atec"></span> Formação ATEC</div>
+      <div class="legend-item"><span class="badge estagio"></span> Estágio</div>
+      <div class="legend-item"><span class="badge estudando"></span> Estudando</div>
+    </div>
+  </header>
+
+  <main class="board-container">
+    <div class="board" id="board">
+      <!-- As casas da trilha serão geradas via JS -->
+    </div>
+  </main>
+
+  <!-- Modal para Detalhes da Tecnologia -->
+  <div id="modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">&times;</button>
+      <div class="modal-header">
+        <span id="techCategory" class="tech-category-badge"></span>
+        <h2 id="techTitle">Nome da Tecnologia</h2>
+      </div>
+      <div class="modal-body">
+        <h3>💡 O que eu sei / O que pratiquei:</h3>
+        <p id="techDescription">Descrição detalhada do conhecimento.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
