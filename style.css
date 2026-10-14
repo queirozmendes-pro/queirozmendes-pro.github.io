@@ -1,127 +1,180 @@
 :root {
-  --bg-color: #0d1117;
-  --card-bg: #161b22;
+  --bg-color: #0b0c10;
+  --card-bg: #12131c;
   --text-color: #f0f6fc;
   
-  /* Cores Lilás por Categoria */
-  --atec-color: #3b0764;
-  --atec-border: #c084fc;
-  
-  --estagio-color: #581c87;
-  --estagio-border: #e9d5ff;
-  
-  --estudando-color: #7e22ce;
-  --estudando-border: #f3e8ff;
+  /* Cores Neon e Bordas (Tons de Lilás e Violeta) */
+  --atec-bg: rgba(88, 28, 135, 0.45);
+  --atec-border: #d8b4fe;
+  --atec-glow: rgba(216, 180, 254, 0.6);
+
+  --estagio-bg: rgba(126, 34, 206, 0.45);
+  --estagio-border: #c084fc;
+  --estagio-glow: rgba(192, 132, 252, 0.6);
+
+  --estudando-bg: rgba(58, 12, 92, 0.55);
+  --estudando-border: #a855f7;
+  --estudando-glow: rgba(168, 85, 247, 0.5);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Fira Code', 'Courier New', Consolas, monospace;
 }
 
 body {
   background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(168, 85, 247, 0.15), transparent 60%),
+    linear-gradient(180deg, #0b0c10 0%, #050508 100%);
   color: var(--text-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 40px 20px;
 }
 
 header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 8px;
-  color: #d8b4fe;
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  color: #f3e8ff;
+  text-shadow: 0 0 15px rgba(216, 180, 254, 0.5);
+  font-weight: 700;
 }
 
 header p {
-  color: #8b949e;
-  margin-bottom: 15px;
+  color: #a78bfa;
+  margin-bottom: 25px;
+  font-size: 1rem;
 }
 
+/* Legendas em estilo Chip */
 .legend {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 25px;
   flex-wrap: wrap;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
+  gap: 10px;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .badge {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
 }
 
-.badge.atec { background-color: var(--atec-color); border: 2px solid var(--atec-border); }
-.badge.estagio { background-color: var(--estagio-color); border: 2px solid var(--estagio-border); }
-.badge.estudando { background-color: var(--estudando-color); border: 2px solid var(--estudando-border); }
+.badge.atec { background: var(--atec-border); box-shadow: 0 0 8px var(--atec-glow); }
+.badge.estagio { background: var(--estagio-border); box-shadow: 0 0 8px var(--estagio-glow); }
+.badge.estudando { background: var(--estudando-border); box-shadow: 0 0 8px var(--estudando-glow); }
 
-/* Tabuleiro em Trilha estilo Jogo */
+/* Conteiner da Trilha/Tabuleiro */
 .board-container {
   width: 100%;
-  max-width: 1000px;
-}
-
-.board {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 15px;
+  max-width: 1100px;
   padding: 20px;
-  background: var(--card-bg);
-  border-radius: 12px;
-  border: 1px solid #30363d;
 }
 
+/* Layout em Trilha Fluida com bastante Espaçamento */
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 35px 28px; /* Espaçamento amplo entre os chips */
+  padding: 50px 30px;
+  background: rgba(18, 19, 28, 0.6);
+  border-radius: 24px;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 30px rgba(168, 85, 247, 0.05);
+  position: relative;
+}
+
+/* Estilo dos Chips / Blocos da Trilha */
 .tile {
-  padding: 20px 10px;
-  border-radius: 8px;
+  padding: 16px 28px;
+  border-radius: 14px; /* Formato de Chip arredondado */
   text-align: center;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 1.05rem;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
+  backdrop-filter: blur(4px);
 }
 
+/* Efeito de Conexão entre os Chips */
+.tile::after {
+  content: '';
+  position: absolute;
+  right: -28px;
+  top: 50%;
+  width: 28px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.6), rgba(216, 180, 254, 0.3));
+  box-shadow: 0 0 6px rgba(168, 85, 247, 0.5);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.tile:last-child::after {
+  display: none;
+}
+
+/* Hover nos Chips (Brilho Neon ao passar o mouse) */
 .tile:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4);
+  transform: translateY(-6px) scale(1.05);
+  z-index: 10;
 }
 
+/* Cores por Categoria */
 .tile.atec {
-  background-color: var(--atec-color);
+  background-color: var(--atec-bg);
   border: 2px solid var(--atec-border);
+  color: #ffffff;
+  box-shadow: 0 0 15px var(--atec-glow), inset 0 0 10px rgba(216, 180, 254, 0.2);
 }
 
 .tile.estagio {
-  background-color: var(--estagio-color);
+  background-color: var(--estagio-bg);
   border: 2px solid var(--estagio-border);
+  color: #ffffff;
+  box-shadow: 0 0 15px var(--estagio-glow), inset 0 0 10px rgba(192, 132, 252, 0.2);
 }
 
 .tile.estudando {
-  background-color: var(--estudando-color);
+  background-color: var(--estudando-bg);
   border: 2px solid var(--estudando-border);
+  color: #ffffff;
+  box-shadow: 0 0 15px var(--estudando-glow), inset 0 0 10px rgba(168, 85, 247, 0.2);
 }
 
 /* Modal Interativo */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(5, 5, 8, 0.85);
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,37 +186,63 @@ header p {
 }
 
 .modal-content {
-  background: var(--card-bg);
-  border: 1px solid #30363d;
-  border-radius: 12px;
+  background: #161722;
+  border: 1px solid #a855f7;
+  border-radius: 18px;
   width: 90%;
-  max-width: 500px;
-  padding: 25px;
+  max-width: 520px;
+  padding: 30px;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 35px rgba(168, 85, 247, 0.4);
 }
 
 .close-btn {
   position: absolute;
-  top: 12px;
-  right: 15px;
+  top: 15px;
+  right: 18px;
   background: none;
   border: none;
-  color: #8b949e;
-  font-size: 1.8rem;
+  color: #a78bfa;
+  font-size: 2rem;
   cursor: pointer;
+  transition: color 0.2s;
 }
 
 .close-btn:hover { color: #fff; }
 
 .tech-category-badge {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 6px 14px;
   font-size: 0.8rem;
-  border-radius: 12px;
-  margin-bottom: 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
   text-transform: uppercase;
   font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.tech-category-badge.atec {
+  background: var(--atec-bg);
+  border: 1px solid var(--atec-border);
+  color: #f3e8ff;
+}
+
+.tech-category-badge.estagio {
+  background: var(--estagio-bg);
+  border: 1px solid var(--estagio-border);
+  color: #f3e8ff;
+}
+
+.tech-category-badge.estudando {
+  background: var(--estudando-bg);
+  border: 1px solid var(--estudando-border);
+  color: #f3e8ff;
+}
+
+.modal-header h2 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
 
 .modal-body {
@@ -173,10 +252,11 @@ header p {
 .modal-body h3 {
   font-size: 1rem;
   color: #d8b4fe;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .modal-body p {
-  line-height: 1.5;
-  color: #c9d1d9;
+  line-height: 1.6;
+  color: #e2e8f0;
+  font-size: 0.95rem;
 }
