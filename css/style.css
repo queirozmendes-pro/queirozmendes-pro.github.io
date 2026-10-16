@@ -1,0 +1,46 @@
+/* (Pt) Base: variáveis, reset, página e cores das categorias.
+   Para criar uma categoria nova, defina as cores em :root e uma classe no fim deste arquivo. 
+   (En) Base: variables, reset, page and category colors. 
+   To create a new category, define the colors in :root and a class at the end of this file.*/
+
+:root {
+  --bg-color: #06050b;
+  --text-color: #f0f6fc;
+  --mono: ui-monospace, "Cascadia Code", "Fira Code", Consolas, "Courier New", monospace;
+
+  --atec-color: #d8b4fe;
+  --atec-bg: rgba(168, 85, 247, 0.3);
+  --atec-fill: #5b2fa0;
+
+  --estagio-color: #e879f9;
+  --estagio-bg: rgba(232, 121, 249, 0.3);
+  --estagio-fill: #86219a;
+
+  --estudando-color: #8b5cf6;
+  --estudando-bg: rgba(139, 92, 246, 0.3);
+  --estudando-fill: #4c2a9e;
+
+  --outros-color: #6ee7b7;
+  --outros-bg: rgba(110, 231, 183, 0.3);
+  --outros-fill: #0f6b4f;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--mono); }
+
+body {
+  background-color: var(--bg-color);
+  background-image:
+    radial-gradient(circle at 50% 20%, rgba(168, 85, 247, 0.2), transparent 65%),
+    linear-gradient(180deg, #06050b 0%, #020204 100%);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 28px 20px 40px;
+}
+
+/* (Pt) Categorias: legenda, casas e painel leem estas três variáveis (--c, --bg, --fill)
+   (En) Categories: legend, board spaces, and panel read these three variables (--c, --bg, --fill) */
+.atec      { --c: var(--atec-color);      --bg: var(--atec-bg);      --fill: var(--atec-fill); }
+.estagio   { --c: var(--estagio-color);   --bg: var(--estagio-bg);   --fill: var(--estagio-fill); }
+.estudando { --c: var(--estudando-color); --bg: var(--estudando-bg); --fill: var(--estudando-fill); }
+.outros    { --c: var(--outros-color); --bg: var(--outros-bg); --fill: var(--outros-fill); }

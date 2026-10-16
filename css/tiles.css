@@ -1,0 +1,59 @@
+/* (Pt) Casas (chips) preenchidas com as tecnologias.
+   A cor vem da categoria (classe .atec, .estagio, .estudando, .outros em style.css). 
+   (En) Board spaces (chips) filled with technologies. 
+   The color comes from the category (.atec, .estagio, .estudando, .outros classes in style.css). */
+
+.tile-node {
+  position: absolute;
+  width: 12.5%;                 
+  aspect-ratio: 1.7;
+  transform: translate(-50%, -50%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 0.6cqw;
+  text-align: center;
+  font-weight: bold;
+  font-size: clamp(9px, 1.45cqw, 16px);
+  line-height: 1.15;
+  color: #fff;
+  background: linear-gradient(150deg, var(--fill), #120d24 85%);
+  border: 2px solid var(--c);
+  border-radius: 1cqw;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 0.5cqw 0 color-mix(in srgb, var(--c) 35%, #000),
+    0 1.2cqw 1.6cqw rgba(0, 0, 0, 0.6),
+    0 0 16px color-mix(in srgb, var(--c) 45%, transparent);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 2;
+}
+
+.tile-node::before,
+.tile-node::after {
+  content: "";
+  position: absolute; left: 14%; right: 14%;
+  height: 9%;
+  background: repeating-linear-gradient(to right, var(--c) 0 3px, transparent 3px 7px);
+  opacity: 0.85;
+  border-radius: 2px;
+}
+.tile-node::before { top: -13%; }
+.tile-node::after  { bottom: -13%; }
+
+.tile-node:hover { transform: translate(-50%, -54%) scale(1.07); z-index: 5; }
+
+.tile-node.active {
+  transform: translate(-50%, -54%) scale(1.1);
+  z-index: 6;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0.6cqw 0 color-mix(in srgb, var(--c) 35%, #000),
+    0 0 28px var(--c);
+}
+
+.tile-node:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-node { transition: none; }
+}

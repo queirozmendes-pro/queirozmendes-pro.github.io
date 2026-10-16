@@ -1,0 +1,57 @@
+/*  (Pt) Cabeçalho: título à esquerda, legenda à direita 
+    (En) Header: title on the left, legend on the right*/
+
+.top-bar {
+  width: 100%; max-width: 1100px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 20px; flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.title-block h1 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: #f3e8ff;
+  text-shadow: 0 0 16px rgba(216, 180, 254, 0.55);
+  margin-bottom: 6px;
+}
+.title-block p { color: #a78bfa; font-size: 0.95rem; }
+
+.legend { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.legend-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.85rem; font-weight: bold;
+  padding: 7px 14px; border-radius: 10px;
+  background: rgba(17, 14, 28, 0.9);
+  color: var(--c);
+  border: 2px solid var(--c);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--c) 35%, transparent);
+}
+
+.badge { width: 12px; height: 12px; border-radius: 3px; background: var(--c); }
+
+/*  (Pt): Troca de idioma (PT | EN) 
+    (En): Language switch (PT | EN) */
+.top-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+
+.lang-switch {
+  display: inline-flex;
+  border: 2px solid var(--atec-color);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(17, 14, 28, 0.9);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--atec-color) 35%, transparent);
+}
+
+.lang-switch button {
+  font-size: 0.8rem; font-weight: bold;
+  padding: 6px 14px;
+  color: var(--atec-color);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.lang-switch button[aria-pressed="true"] { background: var(--atec-color); color: #1a1233; box-shadow: 0 0 12px var(--atec-color); }
+.lang-switch button:hover:not([aria-pressed="true"]) { background: var(--atec-bg); }
+.lang-switch button:focus-visible { outline: 3px solid #fff; outline-offset: -3px; }

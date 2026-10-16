@@ -1,0 +1,70 @@
+/*  (Pt) Painel de explicação, aberto nas faixas livres do tabuleiro
+    (En) Explanation panel, opened in the empty spaces of the board */
+
+.explain {
+  position: absolute;
+  display: grid;
+  grid-template-columns: minmax(0, 0.3fr) minmax(0, 0.7fr);
+  column-gap: 2.4cqw;
+  align-items: center;
+  padding: 1.6cqw 3.4cqw 1.6cqw 2.4cqw;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--c) 16%, #110e1c), #110e1c 75%);
+  border: 2px solid var(--c);
+  border-radius: 1.4cqw;
+  box-shadow:
+    0 0 26px color-mix(in srgb, var(--c) 45%, transparent),
+    inset 0 0 24px color-mix(in srgb, var(--c) 10%, transparent);
+  overflow: auto;
+  z-index: 4;
+}
+
+.explain[hidden] { display: none; }
+.explain.open { animation: unfold 0.35s ease both; }
+
+@keyframes unfold {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.explain-head { min-width: 0; }
+
+.explain-body {
+  min-width: 0;
+  padding-left: 2.4cqw;
+  border-left: 1px solid color-mix(in srgb, var(--c) 50%, transparent);
+}
+
+.tech-category-badge {
+  display: inline-block;
+  padding: 0.4cqw 1.2cqw;
+  font-size: clamp(9px, 1.05cqw, 12px);
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--c);
+  background: var(--bg);
+  border: 1px solid var(--c);
+  border-radius: 14px;
+  margin-bottom: 0.9cqw;
+}
+
+.explain h2 { font-size: clamp(15px, 2.5cqw, 28px); color: #fff; overflow-wrap: anywhere; }
+.explain h3 { font-size: clamp(10px, 1.3cqw, 15px); color: var(--c); margin-bottom: 0.6cqw; }
+.explain p  { font-size: clamp(11px, 1.5cqw, 17px); line-height: 1.55; color: #cbd5e1; }
+
+.explain-close {
+  position: absolute; top: 0.8cqw; right: 1cqw;
+  width: 2.6cqw; height: 2.6cqw; min-width: 22px; min-height: 22px;
+  display: grid; place-items: center;
+  font-size: clamp(13px, 1.8cqw, 18px); line-height: 1;
+  color: var(--c);
+  background: transparent;
+  border: 1px solid var(--c);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.explain-close:hover { background: var(--bg); }
+.explain-close:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .explain.open { animation: none; }
+}
